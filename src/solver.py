@@ -1,14 +1,6 @@
 import csv
 import algorithms as alg
 
-def load_word_set():
-    """ Loads all English words to a python set """
-
-    with open("lang_data/words") as words_file:
-        words_list = set(words_file.read().split())
-    
-    return words_list
-
 def load_eng_dict():
     """ Reads an English dictionary from a file 
     with words as keys and values as definitions
@@ -52,9 +44,6 @@ def load_eng_dict():
 
     return eng_dict
 
-
-def load_bigrams():
-    pass
 
 def load_games():
     """ Load a list of quartiles games 
