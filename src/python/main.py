@@ -50,9 +50,7 @@ def load_eng_dict():
 
 
 def load_games():
-    """ Load a list of quartiles games 
-        There are five example games
-    """
+    """ Load a list of example quartiles games """
     games_list = list()
     with open('src/games') as games_file:
         for game in games_file:
@@ -66,9 +64,13 @@ if __name__ == "__main__":
 
     Solver = alg.solver(games[3], dictionary)
     solutions = Solver.brute()
-    print(solutions)
 
-    print(Solver.length_hint([], 4))
+    print(solutions,'\n')
+    print("tile based hint", Solver.tile_hint([], 'son'))
+    print("length based hint:", Solver.length_hint([], 4))
+
+
+
 
     project_root = Path(__file__).parent
     test_image = 'IMG_4D2175EF60A8-1.jpeg'

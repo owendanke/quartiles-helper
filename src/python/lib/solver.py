@@ -8,6 +8,7 @@ class solver():
         self.game = game
         self.dictionary = eng_dict
         self.solution_list = list()
+        self.rand = Random()
 
     def brute(self):
         """ Brute force all possible sollutions to a game. """
@@ -29,17 +30,22 @@ class solver():
     
     def tile_hint(self, found_words: iter, tile: str):
         """ gives a hint based on a tile """
-        results = [_ for _ in self.solution]
-        pass
+        flat = (lambda xss: [x for xs in xss for x in xs])  # for xs in xss: for x in xss: x
 
-    def length_hint(self, found_words: iter, word_length: int):
-        """ gives a hint based on the word length (number of tiles) """
-        rand = Random()
-        all_words = set(self.solution_list[word_length - 1])    # all possible words of given length
-        results = list(all_words.difference(found_words))     # every word that hasn't been found
+        all_words = set(flat(self.solution_list))    # flatten solution_list as a set
+        all_words = list(all_words.difference(found_words))     # remve every word that has been found
+        results = [word for word in all_words if tile in word] # all words that contain the tile
 
-        hint = lib.helpers.get_definition(results[rand.randint(a=0, b=len(results) - 1)], self.dictionary)
+        hint = lib.helpers.get_definition(results[self.rand.randint(a=0, b=len(results) - 1)], self.dictionary)
 
         return hint
 
-        
+    def length_hint(self, found_words: iter, word_length: int):
+        """ gives a hint based on the word length (number of tiles) """
+
+        all_words = set(self.solution_list[word_length - 1])    # all possible words of given length
+        results = list(all_words.difference(found_words))     # every word that hasn't been found
+
+        hint = lib.helpers.get_definition(results[self.rand.randint(a=0, b=len(results) - 1)], self.dictionary)
+
+        return hint
