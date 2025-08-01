@@ -1,5 +1,9 @@
 import csv
-import algorithms as alg
+from PIL import Image
+import lib.helpers
+import lib.solver as alg
+import lib.game_ocr
+from pathlib import Path
 
 def load_eng_dict():
     """ Reads an English dictionary from a file 
@@ -56,40 +60,19 @@ def load_games():
 
     return games_list
 
-
-def find_solutions(game):
-    """ Find all five solutions to a game """
-
-    games = load_games()
-    current_game = games[game]
-
-    solutions = list()
-
-    
-
-    return solutions
-
-def dict_lookup():
-    print("Loading dictionary...")
-    eng_dict = load_eng_dict()
-
-    while(True):
-        print('Type a word to search the dictionary or 99 to exit ')
-        query = input()
-
-        if query == '99':
-            break
-
-        else:
-            print(alg.is_word(query.lower(), eng_dict))
-
 if __name__ == "__main__":
-    # dict_lookup()
-
     games = load_games()
     dictionary = load_eng_dict()
 
-    Solver = alg.solvers(games[0], dictionary)
-    Solver.bruce()
+    Solver = alg.solver(games[3], dictionary)
+    solutions = Solver.brute()
+    print(solutions)
 
-    print(Solver)
+    print(Solver.length_hint([], 4))
+
+    project_root = Path(__file__).parent
+    test_image = 'IMG_4D2175EF60A8-1.jpeg'
+    image_path = project_root.parent / test_image
+
+    #lib.game_ocr.ocr_test(Image.open(test_image))
+    #lib.game_ocr.find_grid(str(image_path))

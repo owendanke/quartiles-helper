@@ -1,3 +1,4 @@
 # Untracked files:
     notes.txt
-    src/__pychache__/
+    **/__pycache__/
+    .vscode/

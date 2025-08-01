@@ -14,3 +14,7 @@ Permutations:
   Words of tile length 4:
     Worst case
     P(20, 4) = 20! / (20-4)! = 20! / 16! = 20 * 19 * 18 * 17 = 116,280
+
+Brute force complexity:
+    iterations = P(20, 4) + P(20, 3) + P(20, 2) + P(20, 1)
+    iterations = 123,520
