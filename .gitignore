@@ -1,4 +1,6 @@
 # Untracked files:
     notes.txt
-    **/__pycache__/
-    .vscode/
+    __pycache__/
+    **/.vscode
+    .DS_Store
+    .gitignore
